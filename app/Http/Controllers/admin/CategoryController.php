@@ -38,6 +38,7 @@ class CategoryController extends Controller
             $category->name = $request->name;
             $category->slug = $request->slug;
             $category->status = $request->status;
+            $category->showHome = $request->showHome;
             $category->save();
 
 
@@ -49,7 +50,7 @@ class CategoryController extends Controller
 
                 $newImageName = $category->id.'.'.$ext;
                 $sPath = public_path().'/temp/'.$tempImage->name;
-                $dPath = public_path().'/uploads/category/'.$newImageName;
+                $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
                 File::copy($sPath,$dPath);
 
                 // Generate Image Thumbnail
@@ -65,11 +66,11 @@ class CategoryController extends Controller
                 $category->save();
             }
 
-            $request->session()->flash('success', 'Category added successfully');
+            $request->session()->flash('success', 'Categoría añadida satisfactoriamente');
 
             return response()->json([
                 'status' => true,
-                'message' => 'Category added successfully'
+                'message' => 'Categoría añadida satisfactoriamente'
             ]);
 
         }else{
@@ -93,11 +94,11 @@ class CategoryController extends Controller
         $category = Category::find($categoryId);
 
         if(empty($category)) {
-            $request->session()->flash('error', 'Category not found');
+            $request->session()->flash('error', 'Categoría no encontrada');
             return response()->json([
                 'status' => false,
                 'notFound' => true,
-                'message' => 'Category not found'
+                'message' => 'Categoría no encontrada'
             ]);
         }
 
@@ -111,6 +112,7 @@ class CategoryController extends Controller
             $category->name = $request->name;
             $category->slug = $request->slug;
             $category->status = $request->status;
+            $category->showHome = $request->showHome;
             $category->save();
 
             $oldImage = $category->image;
@@ -129,7 +131,6 @@ class CategoryController extends Controller
                 // Generate Image Thumbnail
                 $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
                 $img = Image::make($sPath);
-                //$img->resize(450, 600);
                 $img->fit(450, 600, function ($constraint) {
                     $constraint->upsize();
                 });
@@ -145,11 +146,11 @@ class CategoryController extends Controller
 
             }
 
-            $request->session()->flash('success', 'Category updated successfully');
+            $request->session()->flash('success', 'Categoría actualizada satisfactoriamente');
 
             return response()->json([
                 'status' => true,
-                'message' => 'Category updated successfully'
+                'message' => 'Categoría actualizada satisfactoriamente'
             ]);
 
         }else{
@@ -164,10 +165,10 @@ class CategoryController extends Controller
         $category = Category::find($categoryId);
 
         if(empty($category)) {
-            $request->session()->flash('error','Category not found');
+            $request->session()->flash('error','Categoría no encontrada');
             return response()->json([
                 'status' => true,
-                'message' => 'Category not found'
+                'message' => 'Categoría no encontrada'
             ]);
         }
 
@@ -176,11 +177,11 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        $request->session()->flash('success', 'Category deleted successfully');
+        $request->session()->flash('success', 'Categoría eliminada satisfactoriamente');
 
         return response()->json([
             'status' => true,
-            'message' => 'Category deleted successfully'
+            'message' => 'Categoría eliminada satisfactoriamente'
         ]);
     }
 }

@@ -17,7 +17,6 @@ class BrandController extends Controller
         }
 
         $brands = $brands->paginate(10);
-
         return view('admin.brands.list', compact('brands'));
     }
 
@@ -38,9 +37,11 @@ class BrandController extends Controller
             $brand->status = $request->status;
             $brand->save();
 
+            $request->session()->flash('success', 'Marca creada satisfactoriamente');
+
             return response()->json([
                 'status' => true,
-                'message' => 'Brand added successfully.'
+                'message' => 'Marca añadida satisfactoriamente'
             ]);
 
         } else {
@@ -55,7 +56,7 @@ class BrandController extends Controller
         $brand = Brand::find($id);
 
         if (empty($brand)) {
-            $request->session()->flash('error','Record not found.');
+            $request->session()->flash('error','Registro no encontrado');
             return redirect()->route('brands.index');
         }
 
@@ -68,7 +69,7 @@ class BrandController extends Controller
         $brand = Brand::find($id);
 
         if (empty($brand)) {
-            $request->session()->flash('error','Record not found.');
+            $request->session()->flash('error','Registro no encontrado');
             return response()->json([
                 'status' => false,
                 'notFound' => true
@@ -87,11 +88,11 @@ class BrandController extends Controller
             $brand->status = $request->status;
             $brand->save();
 
-            $request->session()->flash('success', 'Brand updated successfully.');
+            $request->session()->flash('success', 'Marca actualizada satisfactoriamente');
 
             return response()->json([
                 'status' => true,
-                'message' => 'Brand added successfully.'
+                'message' => 'Marca actualizada satisfactoriamente'
             ]);
 
         } else {
@@ -106,20 +107,20 @@ class BrandController extends Controller
         $brand = Brand::find($brandId);
 
         if(empty($brand)) {
-            $request->session()->flash('error','Brand not found');
+            $request->session()->flash('error','Marca no enontrada');
             return response()->json([
                 'status' => true,
-                'message' => 'Brand not found'
+                'message' => 'Marca no enontrada'
             ]);
         }
 
         $brand->delete();
 
-        $request->session()->flash('success', 'Brand deleted successfully');
+        $request->session()->flash('success', 'Marca eliminada satisfactoriamente');
 
         return response()->json([
             'status' => true,
-            'message' => 'Brand deleted successfully'
+            'message' => 'Marca eliminada satisfactoriamente'
         ]);
 
     }

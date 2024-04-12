@@ -6,10 +6,10 @@
         <div class="container-fluid my-2">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Edit Brand</h1>
+                    <h1>Editar Marca</h1>
                 </div>
                 <div class="col-sm-6 text-right">
-                    <a href="{{ route('brands.index') }}" class="btn btn-primary">Back</a>
+                    <a href="{{ route('brands.index') }}" class="btn btn-primary">Volver</a>
                 </div>
             </div>
         </div>
@@ -26,28 +26,28 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="name">Name</label>
+                                    <label for="name">Nombre</label>
                                     <input type="text" name="name" id="name" class="form-control"
-                                        placeholder="Name" value="{{ $brand->name }}">
+                                        placeholder="Nombre" value="{{ $brand->name }}">
                                     <p></p>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="email">Slug</label>
+                                    <label for="email">Etiqueta</label>
                                     <input type="text" readonly name="slug" id="slug" class="form-control"
-                                        placeholder="Slug" value="{{ $brand->slug }}">
+                                        placeholder="Etiqueta" value="{{ $brand->slug }}">
                                     <p></p>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="email">Status</label>
+                                    <label for="email">Estado</label>
                                     <select name="status" id="status" class="form-control">
-                                        <option {{ $brand->status == 1 ? 'selected' : '' }} value="1">Active</option>
-                                        <option {{ $brand->status == 0 ? 'selected' : '' }} value="0">Block</option>
+                                        <option {{ $brand->status == 1 ? 'selected' : '' }} value="1">Activo</option>
+                                        <option {{ $brand->status == 0 ? 'selected' : '' }} value="0">Inactivo</option>
                                     </select>
                                     <p></p>
                                 </div>
@@ -57,8 +57,8 @@
                     </div>
                 </div>
                 <div class="pb-5 pt-3">
-                    <button type="submit" class="btn btn-primary">Update</button>
-                    <a href="{{ route('brands.index') }}" class="btn btn-outline-dark ml-3">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <a href="{{ route('brands.index') }}" class="btn btn-outline-dark ml-3">Cancelar</a>
                 </div>
             </form>
         </div>

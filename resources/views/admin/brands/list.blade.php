@@ -6,10 +6,10 @@
         <div class="container-fluid my-2">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Brands</h1>
+                    <h1>Marcas</h1>
                 </div>
                 <div class="col-sm-6 text-right">
-                    <a href="{{ route('brands.create') }}" class="btn btn-primary">New Brand</a>
+                    <a href="{{ route('brands.create') }}" class="btn btn-primary">Nueva Marca</a>
                 </div>
             </div>
         </div>
@@ -25,12 +25,12 @@
                     <div class="card-header">
                         <div class="card-title">
                             <button type="button" onclick="window.location.href='{{ route('brands.index') }}'"
-                                class="btn btn-default btn-sm">Reset</button>
+                                class="btn btn-default btn-sm">Actualizar</button>
                         </div>
                         <div class="card-tools">
                             <div class="input-group input-group" style="width: 250px;">
                                 <input value="{{ Request::get('keyword') }}" type="text" name="keyword"
-                                    class="form-control float-right" placeholder="Search">
+                                    class="form-control float-right" placeholder="Buscar">
 
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-default">
@@ -46,10 +46,10 @@
                         <thead>
                             <tr>
                                 <th width="60">ID</th>
-                                <th>Name</th>
-                                <th>Slug</th>
-                                <th width="100">Status</th>
-                                <th width="100">Action</th>
+                                <th>Nombre</th>
+                                <th>Etiqueta</th>
+                                <th width="100">Estado</th>
+                                <th width="100">Acción</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -103,7 +103,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="5">Records Not Found</td>
+                                    <td colspan="5">Registros no Ecnontrados</td>
                                 </tr>
                             @endif
                         </tbody>

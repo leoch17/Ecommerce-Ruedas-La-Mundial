@@ -6,10 +6,10 @@
         <div class="container-fluid my-2">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Create Sub Category</h1>
+                    <h1>Crear Sub Categoría</h1>
                 </div>
                 <div class="col-sm-6 text-right">
-                    <a href="{{ route('sub-categories.index') }}" class="btn btn-primary">Back</a>
+                    <a href="{{ route('sub-categories.index') }}" class="btn btn-primary">Volver</a>
                 </div>
             </div>
         </div>
@@ -25,9 +25,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="name">Category</label>
+                                    <label for="name">Categoría</label>
                                     <select name="category" id="category" class="form-control">
-                                        <option value="">Select a category</option>
+                                        <option value="">Seleccione una categoría</option>
                                         @if ($categories->isNotEmpty())
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -40,30 +40,40 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="name">Name</label>
+                                    <label for="name">Nombre</label>
                                     <input type="text" name="name" id="name" class="form-control"
-                                        placeholder="Name">
+                                        placeholder="Nombre">
                                     <p></p>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="slug">Slug</label>
+                                    <label for="slug">Etiqueta</label>
                                     <input type="text" readonly name="slug" id="slug" class="form-control"
-                                        placeholder="Slug">
+                                        placeholder="Etiqueta">
                                     <p></p>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="status">Status</label>
+                                    <label for="status">Estado</label>
                                     <select name="status" id="status" class="form-control">
-                                        <option value="1">Active</option>
-                                        <option value="0">Block</option>
+                                        <option value="1">Activo</option>
+                                        <option value="0">Inactivo</option>
                                     </select>
                                     <p></p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="status">Mostrar en Inicio</label>
+                                    <select name="showHome" id="showHome" class="form-control">
+                                        <option value="Yes">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -71,8 +81,8 @@
                     </div>
                 </div>
                 <div class="pb-5 pt-3">
-                    <button type="submit" class="btn btn-primary">Create</button>
-                    <a href="{{ route('sub-categories.index') }}" class="btn btn-outline-dark ml-3">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                    <a href="{{ route('sub-categories.index') }}" class="btn btn-outline-dark ml-3">Cancelar</a>
                 </div>
             </form>
         </div>

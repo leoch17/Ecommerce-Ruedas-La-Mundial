@@ -45,13 +45,14 @@ class SubCategoryController extends Controller
             $subCategory->slug = $request->slug;
             $subCategory->status = $request->status;
             $subCategory->category_id = $request->category;
+            $subCategory->showHome = $request->showHome;
             $subCategory->save();
 
-            $request->session()->flash('success', 'Sub Category created successfully.');
+            $request->session()->flash('success', 'Sub Categoría creada satisfactoriamente');
 
             return response([
                 'status' => true,
-                'message' => 'Sub Category created successfully.'
+                'message' => 'Sub Categoría creada satisfactoriamente'
             ]);
 
         } else {
@@ -67,7 +68,7 @@ class SubCategoryController extends Controller
 
         $subCategory = SubCategory::find($id);
         if(empty($subCategory)) {
-            $request->session()->flash('error','Record not found');
+            $request->session()->flash('error','Registro no encontrado');
             return redirect()->route('sub-categories.index');
         }
 
@@ -82,7 +83,7 @@ class SubCategoryController extends Controller
         $subCategory = SubCategory::find($id);
         
         if(empty($subCategory)) {
-            $request->session()->flash('error','Record not found');
+            $request->session()->flash('error','Registro no encontrado');
             return response()->json([
                 'status' => false,
                 'notFound' => true
@@ -101,14 +102,15 @@ class SubCategoryController extends Controller
             $subCategory->name = $request->name;
             $subCategory->slug = $request->slug;
             $subCategory->status = $request->status;
+            $subCategory->showHome = $request->showHome;
             $subCategory->category_id = $request->category;
             $subCategory->save();
 
-            $request->session()->flash('success', 'Sub Category updated successfully.');
+            $request->session()->flash('success', 'Sub Categoría actualizada satisfactoriamente');
 
             return response()->json([
                 'status' => true,
-                'message' => 'Sub Category updated successfully.'
+                'message' => 'Sub Categoría actualizada satisfactoriamente'
             ]);
 
         } else {
@@ -124,10 +126,10 @@ class SubCategoryController extends Controller
         $subCategory = Category::find($subCategoryId);
 
         if(empty($subCategory)) {
-            $request->session()->flash('error','Sub-Category not found');
+            $request->session()->flash('error','Sub Categoría no encontrada');
             return response()->json([
                 'status' => true,
-                'message' => 'Sub-Category not found'
+                'message' => 'Sub Categoría no encontrada'
             ]);
         }
 
@@ -136,11 +138,11 @@ class SubCategoryController extends Controller
 
         $subCategory->delete();
 
-        $request->session()->flash('success', 'Sub-Category deleted successfully.');
+        $request->session()->flash('success', 'Sub Categoría eliminada satisfactoriamente');
 
         return response()->json([
             'status' => true,
-            'message' => 'Sub-Category deleted successfully'
+            'message' => 'Sub Categoría eliminada satisfactoriamente'
         ]);
     }
 }

@@ -232,7 +232,7 @@
                 </div>
 
                 <div class="pb-5 pt-3">
-                    <button type="submit" class="btn btn-primary">Crear</button>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
                     <a href="{{ route('products.index') }}" class="btn btn-outline-dark ml-3">Cancelar</a>
                 </div>
             </div>
