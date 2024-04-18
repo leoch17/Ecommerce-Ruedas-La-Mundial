@@ -25,10 +25,10 @@
                     <div class="card-header">
                         <div class="card-title">
                             <button type="button" onclick="window.location.href='{{ route('categories.index') }}'"
-                                class="btn btn-default btn-sm">Reset</button>
+                                class="btn btn-default btn-sm">Actualizar</button>
                         </div>
                         <div class="card-tools">
-                            <div class="input-group input-group" style="width: 250px;">
+                            <div class="input-group input-group" style="width: 200px;">
                                 <input value="{{ Request::get('keyword') }}" type="text" name="keyword"
                                     class="form-control float-right" placeholder="Buscar">
 
@@ -126,7 +126,7 @@
             var url = '{{ route('categories.delete', 'ID') }}';
             var newUrl = url.replace("ID", id);
 
-            if (confirm("Are you sure you want to delete?")) {
+            if (confirm("¿Esta seguro que quiere eliminar esta categoría?")) {
                 $.ajax({
                     url: newUrl,
                     type: 'delete',

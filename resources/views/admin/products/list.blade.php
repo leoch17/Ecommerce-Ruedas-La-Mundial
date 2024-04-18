@@ -28,7 +28,7 @@
                                 class="btn btn-default btn-sm">Actualizar</button>
                         </div>
                         <div class="card-tools">
-                            <div class="input-group input-group" style="width: 250px;">
+                            <div class="input-group input-group" style="width: 200px;">
                                 <input value="{{ Request::get('keyword') }}" type="text" name="keyword"
                                     class="form-control float-right" placeholder="Buscar">
 

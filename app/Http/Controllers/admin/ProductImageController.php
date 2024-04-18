@@ -58,8 +58,8 @@ class ProductImageController extends Controller
         }
 
         // Delete images from folder
-        File::delete(public_path('uploads/produtc/large/'.$productImage->image));
-        File::delete(public_path('uploads/produtc/small/'.$productImage->image));
+        File::delete(public_path('uploads/product/large/'.$productImage->image));
+        File::delete(public_path('uploads/product/small/'.$productImage->image));
 
         $productImage->delete();
 
