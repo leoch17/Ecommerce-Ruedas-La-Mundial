@@ -64,14 +64,20 @@
                     </a>
                 </div>
                 <div class="col-lg-6 col-6 text-left  d-flex justify-content-end align-items-center">
-                    <a href="{{ route('account.register') }}" class="nav-link text-dark">Mi Cuenta</a>
-                    <form action="">
+                    @if (Auth::check())
+                        <a href="{{ route('account.profile') }}" class="nav-link text-dark">Mi Cuenta</a>
+                    @else
+                        <a href="{{ route('account.login') }}" class="nav-link text-dark">
+                            Iniciar Sesión/Registrarse
+                        </a>
+                    @endif
+                    <form action="{{ route('frontend.shop') }}" method="get">
                         <div class="input-group">
-                            <input type="text" placeholder="Buscar Productos" class="form-control"
-                                aria-label="Amount (to the nearest dollar)">
-                            <span class="input-group-text">
+                            <input value="{{ Request::get('search') }}" type="text" placeholder="Buscar Productos"
+                                class="form-control" name="search" id="search">
+                            <button type="submit" class="input-group-text">
                                 <i class="fa fa-search"></i>
-                            </span>
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -104,8 +110,11 @@
                                     @if ($category->sub_category->isNotEmpty())
                                         <ul class="dropdown-menu dropdown-menu-dark">
                                             @foreach ($category->sub_category as $subCategory)
-                                                <li><a class="dropdown-item nav-link"
-                                                        href="{{ route('frontend.shop', [$category->slug, $subCategory->slug]) }}">{{ $subCategory->name }}</a>
+                                                <li>
+                                                    <a class="dropdown-item nav-link"
+                                                        href="{{ route('frontend.shop', [$category->slug, $subCategory->slug]) }}">
+                                                        {{ $subCategory->name }}
+                                                    </a>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -119,28 +128,22 @@
                     </ul>
                 </div>
 
-                {{-- <div class="col-lg-6 text-left  d-flex justify-content-end align-items-center"
-                    style="padding-right: 15%; ">
-                    <a href="{{ route('admin.login') }}" class="nav-link text-dark"><i class="fa fa-user"
-                            style="color: #fff"></i></a>
-                    <form action="">
-                        <div class="input-group">
-                            <span class="input-group-text">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </form>
-                </div> --}}
                 <div class="right-nav py-0 px-5">
-                    <a href="{{ route('frontend.shop') }}" class="ml-3 d-flex pt-2">
+                    <a href="{{ route('frontend.shop') }}" class="d-flex pt-2">
+                        <i class="fas fa-shopping-bag text-primary"></i>
+                    </a>
+                </div>
+                <div class="right-nav py-0 px-2">
+                    <a href="{{ route('frontend.cart') }}" class="d-flex pt-2">
                         <i class="fas fa-shopping-cart text-primary"></i>
                     </a>
                 </div>
-                <div class="right-nav py-0">
-                    <a href="{{ route('frontend.cart') }}" class="ml-3 d-flex pt-2">
-                        <i class="fas fa-shopping-basket text-primary"></i>
+                {{-- <div class="right-nav py-0 px-0">
+                    <a href="{{ route('account.wishlist') }}" class="d-flex pt-2">
+                        <i class="far fa-heart text-primary"></i>
                     </a>
-                </div>
+                </div> --}}
+
             </nav>
         </div>
     </header>
@@ -166,11 +169,20 @@
                     <div class="footer-card">
                         <h3>Enlaces Importantes</h3>
                         <ul>
-                            <li><a href="about-us.php" title="About">Acerca De</a></li>
+                            @if (staticPages()->isNotEmpty())
+                                @foreach (staticPages() as $page)
+                                    <li><a href="{{ route('frontend.page', $page->slug) }}"
+                                            title="{{ $page->name }}">
+                                            {{ $page->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @endif
+                            {{-- 
                             <li><a href="contact-us.php" title="Contact Us">Contáctanos</a></li>
                             <li><a href="#" title="Privacy">Confidencialidad</a></li>
                             <li><a href="#" title="Privacy">Términos y Condiciones</a></li>
-                            <li><a href="#" title="Privacy">Política de Devoluciones</a></li>
+                            <li><a href="#" title="Privacy">Política de Devoluciones</a></li> --}}
                         </ul>
                     </div>
                 </div>
@@ -199,6 +211,26 @@
             </div>
         </div>
     </footer>
+
+    <!-- Wishlist Modal -->
+    <div class="modal fade" id="wishlistModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Completado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="{{ asset('front-assets/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('front-assets/js/bootstrap.bundle.5.1.3.min.js') }}"></script>
     <script src="{{ asset('front-assets/js/instantpages.5.1.0.min.js') }}"></script>
@@ -245,7 +277,29 @@
                         alert(response.message);
                     }
                 }
-            })
+            });
+        }
+
+        function addToWishList(id) {
+            $.ajax({
+                url: '{{ route('frontend.addToWishlist') }}',
+                type: 'post',
+                data: {
+                    id: id
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status == true) {
+
+                        $("#wishlistModal .modal-body").html(response.message);
+                        $("#wishlistModal").modal('show');
+
+                    } else {
+                        window.location.href = "{{ route('account.login') }}";
+                        //alert(response.message);
+                    }
+                }
+            });
         }
     </script>
     @yield('customJs')

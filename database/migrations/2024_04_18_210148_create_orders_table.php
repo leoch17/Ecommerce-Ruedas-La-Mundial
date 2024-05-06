@@ -13,6 +13,26 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->double('subtotal',10,2);
+            $table->double('shipping',10,2)->nullable();
+            $table->string('coupon_code')->nullable();
+            $table->integer('coupon_code_id')->nullable();
+            $table->double('discount',10,2)->nullable();
+            $table->double('grand_total',10,2);
+
+            // User Address related columns
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email');
+            $table->string('mobile');
+            $table->foreignId('state_id')->constrained()->onDelete('cascade');
+            $table->text('address');
+            $table->string('apartment')->nullable();
+            $table->string('city');
+            $table->string('zip');
+            $table->text('notes')->nullable();
+
             $table->timestamps();
         });
     }

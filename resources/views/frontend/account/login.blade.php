@@ -5,7 +5,7 @@
         <div class="container">
             <div class="light-font">
                 <ol class="breadcrumb primary-color mb-0">
-                    <li class="breadcrumb-item"><a class="white-text" href="#">Inicio</a></li>
+                    <li class="breadcrumb-item"><a class="white-text" href="{{ route('frontend.home') }}">Inicio</a></li>
                     <li class="breadcrumb-item">Iniciar Sesión</li>
                 </ol>
             </div>

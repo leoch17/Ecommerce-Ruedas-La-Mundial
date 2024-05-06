@@ -119,7 +119,10 @@
                                 </div>
                                 <div class="right">
                                     <div class="cat-data">
-                                        <h2>{{ $category->name }}</h2>
+                                        <a class="dropdown-item nav-link" style="text-decoration: yellow"
+                                            href="{{ route('frontend.shop', [$category->slug]) }}">
+                                            <h2>{{ $category->name }}</h2>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -156,13 +159,27 @@
 
                                     </a>
 
-                                    <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
+                                    <a onclick="addToWishList({{ $product->id }})" class="whishlist"
+                                        href="javascript:void(0)"><i class="far fa-heart"></i></a>
 
                                     <div class="product-action">
-                                        <a class="btn btn-dark" href="javascript:void(0);"
-                                            onclick="addToCart({{ $product->id }});">
-                                            <i class="fa fa-shopping-cart"></i> Añadir al Carrito
-                                        </a>
+                                        @if ($product->track_qty == 'Yes')
+                                            @if ($product->qty > 0)
+                                                <a class="btn btn-dark" href="javascript:void(0);"
+                                                    onclick="addToCart({{ $product->id }});">
+                                                    <i class="fa fa-shopping-cart"></i> Añadir al Carrito
+                                                </a>
+                                            @else
+                                                <a class="btn btn-dark" href="javascript:void(0);">
+                                                    Agotado
+                                                </a>
+                                            @endif
+                                        @else
+                                            <a class="btn btn-dark" href="javascript:void(0);"
+                                                onclick="addToCart({{ $product->id }});">
+                                                <i class="fa fa-shopping-cart"></i> Añadir al Carrito
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="card-body text-center mt-3">
@@ -212,13 +229,27 @@
 
                                     </a>
 
-                                    <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
+                                    <a onclick="addToWishList({{ $product->id }})" class="whishlist"
+                                        href="javascript:void(0)"><i class="far fa-heart"></i></a>
 
                                     <div class="product-action">
-                                        <a class="btn btn-dark" href="javascript:void(0);"
-                                            onclick="addToCart({{ $product->id }});">
-                                            <i class="fa fa-shopping-cart"></i> Añadir al Carrito
-                                        </a>
+                                        @if ($product->track_qty == 'Yes')
+                                            @if ($product->qty > 0)
+                                                <a class="btn btn-dark" href="javascript:void(0);"
+                                                    onclick="addToCart({{ $product->id }});">
+                                                    <i class="fa fa-shopping-cart"></i> Añadir al Carrito
+                                                </a>
+                                            @else
+                                                <a class="btn btn-dark" href="javascript:void(0);">
+                                                    Agotado
+                                                </a>
+                                            @endif
+                                        @else
+                                            <a class="btn btn-dark" href="javascript:void(0);"
+                                                onclick="addToCart({{ $product->id }});">
+                                                <i class="fa fa-shopping-cart"></i> Añadir al Carrito
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="card-body text-center mt-3">
@@ -231,6 +262,7 @@
                                             <span
                                                 class="h6 text-underline"><del>${{ $product->compare_price }}</del></span>
                                         @endif
+
                                     </div>
                                 </div>
                             </div>

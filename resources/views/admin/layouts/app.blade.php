@@ -19,6 +19,8 @@
 
     <link rel="stylesheet" href="{{ asset('admin-assets/plugins/select2/css/select2.min.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('admin-assets/css/datetimepicker.css') }}">
+
     <link rel="stylesheet" href="{{ asset('admin-assets/css/custom.css') }}">
     <meta name="csrf_token" content="{{ csrf_token() }}">
 </head>
@@ -60,7 +62,7 @@
                             <i class="fas fa-user-cog mr-2"></i> Settings
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ route('admin.showChangePasswordForm') }}" class="dropdown-item">
                             <i class="fas fa-lock mr-2"></i> Change Password
                         </a>
                         <div class="dropdown-divider"></div>
@@ -82,7 +84,7 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2022 AmazingShop All rights reserved.
+            <strong>Copyright &copy; 2024 Ruedas La Mundial Todos los derechos reservados.
         </footer>
 
     </div>
@@ -100,6 +102,7 @@
 
     <script src="{{ asset('admin-assets/plugins/select2/js/select2.min.js') }}"></script>
 
+    <script src="{{ asset('admin-assets/js/datetimepicker.js') }}"></script>
 
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('admin-assets/js/demo.js') }}"></script>

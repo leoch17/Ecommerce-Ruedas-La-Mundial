@@ -56,7 +56,7 @@
         $("#registrationForm").submit(function(event) {
             event.preventDefault();
 
-            $("button[type='submit']").props('disabled', true);
+            $("button[type='submit']").prop('disabled', true);
 
             $.ajax({
                 url: '{{ route('account.processRegister') }}',
@@ -64,7 +64,7 @@
                 data: $(this).serializeArray(),
                 dataType: 'json',
                 success: function(response) {
-                    $("button[type='submit']").props('disabled', false);
+                    $("button[type='submit']").prop('disabled', false);
 
                     var errors = response.errors;
 
