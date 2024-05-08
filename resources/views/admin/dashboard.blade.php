@@ -23,13 +23,13 @@
                 <div class="col-lg-4 col-6">
                     <div class="small-box card">
                         <div class="inner">
-                            <h3>150</h3>
-                            <p>Total Orders</p>
+                            <h3>{{ $totalOrders }}</h3>
+                            <p>Total de Pedidos</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="#" class="small-box-footer text-dark">More info <i
+                        <a href="{{ route('orders.index') }}" class="small-box-footer text-dark">Más Información <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -37,13 +37,13 @@
                 <div class="col-lg-4 col-6">
                     <div class="small-box card">
                         <div class="inner">
-                            <h3>50</h3>
-                            <p>Total Customers</p>
+                            <h3>{{ $totalProducts }}</h3>
+                            <p>Total de Productos</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="#" class="small-box-footer text-dark">More info <i
+                        <a href="{{ route('products.index') }}" class="small-box-footer text-dark">Más Información <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -51,8 +51,22 @@
                 <div class="col-lg-4 col-6">
                     <div class="small-box card">
                         <div class="inner">
-                            <h3>$1000</h3>
-                            <p>Total Sale</p>
+                            <h3>{{ $totalCustomers }}</h3>
+                            <p>Total de Usuarios</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="{{ route('users.index') }}" class="small-box-footer text-dark">Más Información <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-6">
+                    <div class="small-box card">
+                        <div class="inner">
+                            <h3>{{ number_format($totalRevenue, 2) }}$</h3>
+                            <p>Total de Ingresos</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
@@ -60,6 +74,46 @@
                         <a href="javascript:void(0);" class="small-box-footer">&nbsp;</a>
                     </div>
                 </div>
+
+                <div class="col-lg-4 col-6">
+                    <div class="small-box card">
+                        <div class="inner">
+                            <h3>{{ number_format($revenueThisMonth, 2) }}$</h3>
+                            <p>Ingresos este mes</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <a href="javascript:void(0);" class="small-box-footer">&nbsp;</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-6">
+                    <div class="small-box card">
+                        <div class="inner">
+                            <h3>{{ number_format($revenueLastMonth, 2) }}$</h3>
+                            <p>Ingresos último mes ({{ $lastMonthName }})</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <a href="javascript:void(0);" class="small-box-footer">&nbsp;</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-6">
+                    <div class="small-box card">
+                        <div class="inner">
+                            <h3>{{ number_format($revenueLastThirtyDays, 2) }}$</h3>
+                            <p>Ingresos últimos 30 días</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <a href="javascript:void(0);" class="small-box-footer">&nbsp;</a>
+                    </div>
+                </div>
+
             </div>
         </div>
         <!-- /.card -->

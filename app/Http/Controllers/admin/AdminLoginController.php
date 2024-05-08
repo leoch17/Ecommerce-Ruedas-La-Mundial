@@ -31,11 +31,11 @@ class AdminLoginController extends Controller
                     return redirect()->route('admin.dashboard');
                 } else {
                     Auth::guard('admin')->logout();
-                    return redirect()->route('admin.login')->with('error','You are not authorized to access admin panel.');
+                    return redirect()->route('admin.login')->with('error','Usted no esta autorizado para acceder al panel administrativo.');
                 }
 
             } else {
-                return redirect()->route('admin.login')->with('error','Either Eamil/Password is incorrect');
+                return redirect()->route('admin.login')->with('error','Correo Electrónico/Contraseña incorrectos');
             }
 
         } else {

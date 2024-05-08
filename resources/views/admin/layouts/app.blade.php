@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel Shop :: Administrative Panel</title>
+    <title>Ruedas La Mundial :: Panel Administrativo</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -58,16 +58,16 @@
                         <h4 class="h4 mb-0"><strong>{{ Auth::guard('admin')->user()->name }}</strong></h4>
                         <div class="mb-3">{{ Auth::guard('admin')->user()->email }}</div>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-user-cog mr-2"></i> Settings
-                        </a>
+                        {{-- <a href="#" class="dropdown-item">
+                            <i class="fas fa-user-cog mr-2"></i> Configuración
+                        </a> --}}
                         <div class="dropdown-divider"></div>
-                        <a href="{{ route('admin.showChangePasswordForm') }}" class="dropdown-item">
-                            <i class="fas fa-lock mr-2"></i> Change Password
-                        </a>
+                        {{-- <a href="{{ route('admin.showChangePasswordForm') }}" class="dropdown-item">
+                            <i class="fas fa-lock mr-2"></i> Cambiar Contraseña
+                        </a> --}}
                         <div class="dropdown-divider"></div>
                         <a href="{{ route('admin.logout') }}" class="dropdown-item text-danger">
-                            <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                            <i class="fas fa-sign-out-alt mr-2"></i> Cerrar Sesión
                         </a>
                     </div>
                 </li>

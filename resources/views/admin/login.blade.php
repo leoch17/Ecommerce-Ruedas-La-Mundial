@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel Shop :: Administrative Panel</title>
+    <title>Ruedas La Mundial :: Panel Administrativo</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -23,15 +23,16 @@
         <div class="card card-outline card-primary">
 
             <div class="card-header text-center">
-                <a href="#" class="h3">Administrative Panel</a>
+                <a href="#" class="h3">Panel Administrativo</a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <p class="login-box-msg">Ingrese sus datos para iniciar sesión</p>
                 <form action="{{ route('admin.authenticate') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
                         <input type="email" value="{{ old('email') }}" name="email" id="email"
-                            class="form-control @error('email') is-invalid @enderror()" placeholder="Email">
+                            class="form-control @error('email') is-invalid @enderror()"
+                            placeholder="Correo Electrónico">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -45,7 +46,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <input type="password" name="password" id="password"
-                            class="form-control @error('password') is-invalid @enderror()" placeholder="Password">
+                            class="form-control @error('password') is-invalid @enderror()" placeholder="Contraseña">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -67,14 +68,14 @@
      </div>
        </div> -->
                         <!-- /.col -->
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
                 <p class="mb-1 mt-3">
-                    <a href="forgot-password.html">I forgot my password</a>
+                    <a href="forgot-password.html">Olvidé mi contraseña</a>
                 </p>
             </div>
             <!-- /.card-body -->

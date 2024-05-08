@@ -8,10 +8,14 @@ use App\Models\OrderItem;
 use App\Models\User;
 use App\Models\State;
 use App\Models\Wishlist;
+use App\Mail\ResetPasswordEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -280,5 +284,85 @@ class AuthController extends Controller
                 'errors' => $validator->errors()
             ]);
         }
+    }
+
+    public function forgotPassword() {
+        return view('frontend.account.forgot-password');
+    }
+
+    public function processForgotPassword(Request $request) {
+        $validator = Validator::make($request->all(),[
+            'email' => 'required|email|exists:users,email'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('frontend.forgotPassword')->withInput()->withErrors($validator);
+        }
+
+        $token = Str::random(60);
+
+        DB::table('password_reset_tokens')->where('email',$request->email)->delete();
+
+        DB::table('password_reset_tokens')->insert([
+            'email' => $request->email,
+            'token' => $token,
+            'created_at' => now()
+        ]);
+
+        // Enviar Correo Electrónico Aquí
+
+        $user = User::where('email', $request->email)->first();
+
+        $formData = [
+            'token' => $token,
+            'user' => $user,
+            'mailSubject' => 'Ha solicitado restaurar su contraseña'
+        ];
+
+        Mail::to($request->email)->send(new ResetPasswordEmail($formData));
+
+        return redirect()->route('frontend.forgotPassword')->with('success','Por favor, revise su bandeja de entrada para restaurar su contraseña');
+    }
+
+    public function resetPassword($token) {
+
+        $tokenExist = DB::table('password_reset_tokens')->where('token', $token)->first();
+
+        if ($tokenExist == null) {
+            return redirect()->route('frontend.forgotPassword')->with('error', 'Solicitud inválida');
+        }
+
+        return view('frontend.account.reset-password',[
+            'token' => $token
+        ]);
+    }
+
+    public function processResetPassword(Request $request) {
+        $token = $request->token;
+
+        $tokenObj = DB::table('password_reset_tokens')->where('token', $token)->first();
+
+        if ($tokenObj == null) {
+            return redirect()->route('frontend.forgotPassword')->with('error', 'Solicitud inválida');
+        }
+
+        $user = User::where('email',$tokenObj->email)->first();
+
+        $validator = Validator::make($request->all(),[
+            'new_password' => 'required|min:8',
+            'confirm_password' => 'required|same:new_password'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('frontend.resetPassword',$token)->withErrors($validator);
+        }
+
+        User::where('id',$user->id)->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        DB::table('password_reset_tokens')->where('email',$user->email)->delete();
+
+        return redirect()->route('account.login')->with('success', 'Ha actualizado su contraseña satisfactoriamente');
     }
 }

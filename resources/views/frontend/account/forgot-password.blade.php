@@ -6,7 +6,7 @@
             <div class="light-font">
                 <ol class="breadcrumb primary-color mb-0">
                     <li class="breadcrumb-item"><a class="white-text" href="{{ route('frontend.home') }}">Inicio</a></li>
-                    <li class="breadcrumb-item">Iniciar Sesión</li>
+                    <li class="breadcrumb-item">Recuperación de Contraseña</li>
                 </ol>
             </div>
         </div>
@@ -25,9 +25,9 @@
                 </div>
             @endif
             <div class="login-form">
-                <form action="{{ route('account.authenticate') }}" method="post">
+                <form action="{{ route('frontend.processForgotPassword') }}" method="post">
                     @csrf
-                    <h4 class="modal-title">Inicia sesión con tu cuenta</h4>
+                    <h4 class="modal-title">Recuperación de Contraseña</h4>
                     <div class="form-group">
                         <input type="text" class="form-control @error('email') is-invalid @enderror"
                             placeholder="Correo Electrónico" name="email" value="{{ old('email') }}">
@@ -35,20 +35,10 @@
                             <p class="invalid-feedback">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control @error('password') is-invalid @enderror"
-                            placeholder="Contraseña" name="password">
-                        @error('password')
-                            <p class="invalid-feedback">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="form-group small">
-                        <a href="{{ route('frontend.forgotPassword') }}" class="forgot-link">¿Olvido la contraseña?</a>
-                    </div>
-                    <input type="submit" class="btn btn-dark btn-block btn-lg" value="Iniciar Sesión">
+
+                    <input type="submit" class="btn btn-dark btn-block btn-lg" value="Enviar">
                 </form>
-                <div class="text-center small">¿No tienes una cuenta? <a
-                        href="{{ route('account.register') }}">Registrese</a></div>
+                <div class="text-center small">Volver a <a href="{{ route('account.login') }}">Inicio Sesión</a></div>
             </div>
         </div>
     </section>

@@ -14,7 +14,7 @@
                 <!-- Add icons to the links using the .nav-icon class
 with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="dashboard.html" class="nav-link">
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
@@ -31,6 +31,7 @@ with font-awesome or any other icon font library -->
                         <p>Sub Categoría</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ route('brands.index') }}" class="nav-link">
                         <svg class="h-6 nav-icon w-6 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -42,10 +43,18 @@ with font-awesome or any other icon font library -->
                         <p>Marcas</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ route('products.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-tag"></i>
                         <p>Productos</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('products.productRatings') }}" class="nav-link">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>Valoraciones</p>
                     </a>
                 </li>
 
@@ -56,24 +65,28 @@ with font-awesome or any other icon font library -->
                         <p>Envíos</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ route('orders.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-shopping-bag"></i>
                         <p>Pedidos</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ route('coupons.index') }}" class="nav-link">
                         <i class="nav-icon  fa fa-percent" aria-hidden="true"></i>
                         <p>Descuentos</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ route('users.index') }}" class="nav-link">
                         <i class="nav-icon  fas fa-users"></i>
                         <p>Usuarios</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ route('pages.index') }}" class="nav-link">
                         <i class="nav-icon  far fa-file-alt"></i>

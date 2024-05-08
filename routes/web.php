@@ -58,6 +58,14 @@ Route::post('/apply-discount',[CartController::class,'applyDiscount'])->name('fr
 Route::post('/remove-discount',[CartController::class,'removeCoupon'])->name('frontend.removeCoupon');
 Route::post('/add-to-wishlist',[FrontController::class,'addToWishlist'])->name('frontend.addToWishlist');
 Route::get('/page/{slug}',[FrontController::class,'page'])->name('frontend.page');
+Route::post('/send-contact-email',[FrontController::class,'sendContactEmail'])->name('frontend.sendContactEmail');
+
+Route::get('/forgot-password',[AuthController::class,'forgotPassword'])->name('frontend.forgotPassword');
+Route::post('/process-forgot-password',[AuthController::class,'processForgotPassword'])->name('frontend.processForgotPassword');
+Route::get('/reset-password/{token}',[AuthController::class,'resetPassword'])->name('frontend.resetPassword');
+Route::post('/process-reset-password',[AuthController::class,'processResetPassword'])->name('frontend.processResetPassword');
+Route::post('/save-rating/{productId}',[ShopController::class,'saveRating'])->name('frontend.saveRating');
+
 
 
 
@@ -133,6 +141,8 @@ Route::group(['prefix' => 'admin'],function(){
         Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
         Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.delete');
         Route::get('/get-products',[ProductController::class,'getProducts'])->name('products.getProducts');
+        Route::get('/ratings', [ProductController::class, 'productRatings'])->name('products.productRatings');
+        Route::get('/change-rating-status', [ProductController::class, 'changeRatingStatus'])->name('products.changeRatingStatus');
 
 
         Route::get('/product-subcategories', [ProductSubCategoryController::class, 'index'])->name('product-subcategories.index');
@@ -182,6 +192,7 @@ Route::group(['prefix' => 'admin'],function(){
 
         //Rutas de Configuración
         Route::get('/change-password', [SettingController::class, 'showChangePasswordForm'])->name('admin.showChangePasswordForm');
+        Route::post('/process-change-password', [SettingController::class, 'processChangePassword'])->name('admin.processChangePassword');
 
 
         Route::get('/getSlug', function(Request $request){

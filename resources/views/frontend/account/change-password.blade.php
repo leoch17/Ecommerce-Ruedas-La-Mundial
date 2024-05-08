@@ -30,21 +30,21 @@
                             <div class="card-body p-4">
                                 <div class="row">
                                     <div class="mb-3">
-                                        <label for="name">Antigua Contraseña</label>
+                                        <label for="name">Contraseña Actual</label>
                                         <input type="password" name="old_password" id="old_password"
-                                            placeholder="Antigua Contraseña" class="form-control">
+                                            placeholder="Ingrese su contraseña actual" class="form-control">
                                         <p></p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="name">Nueva Contraseña</label>
                                         <input type="password" name="new_password" id="new_password"
-                                            placeholder="Nueva Contraseña" class="form-control">
+                                            placeholder="Ingrese su contraseña nueva" class="form-control">
                                         <p></p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="name">Confirmar Contraseña</label>
                                         <input type="password" name="confirm_password" id="confirm_password"
-                                            placeholder="Confirmar Contraseña" class="form-control">
+                                            placeholder="Confirme su Contraseña" class="form-control">
                                         <p></p>
                                     </div>
                                     <div class="d-flex">

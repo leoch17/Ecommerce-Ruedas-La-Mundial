@@ -8,9 +8,6 @@
                 <div class="col-sm-6">
                     <h1>Cambiar Contraseña</h1>
                 </div>
-                <div class="col-sm-6 text-right">
-                    <a href="{{ route('categories.index') }}" class="btn btn-primary">Volver</a>
-                </div>
             </div>
         </div>
         <!-- /.container-fluid -->
@@ -19,64 +16,43 @@
     <section class="content">
         <!-- Default box -->
         <div class="container-fluid">
-            <form action="" method="post" id="categoryForm" name="categoryForm">
+            @include('admin.message')
+            <form action="" method="post" id="changePasswordForm" name="changePasswordForm">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="name">Nombre</label>
-                                    <input type="text" name="name" id="name" class="form-control"
-                                        placeholder="Nombre">
+                                    <label for="name">Contraseña Actual</label>
+                                    <input type="password" name="old_password" id="old_password" class="form-control"
+                                        placeholder="Ingrese su contraseña actual">
                                     <p></p>
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="slug">Etiqueta</label>
-                                    <input type="text" readonly name="slug" id="slug" class="form-control"
-                                        placeholder="Etiqueta">
+                                    <label for="name">Contraseña Nueva</label>
+                                    <input type="password" name="new_password" id="new_password" class="form-control"
+                                        placeholder="Ingrese su contraseña nueva">
                                     <p></p>
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
-                                    <input type="hidden" id="image_id" name="image_id" value="">
-                                    <label for="image">Imagen</label>
-                                    <div id="image" class="dropzone dz-clickable">
-                                        <div class="dz-message needsclick">
-                                            <br>Suelte los archivos aquí o haga clic para cargarlos.<br><br>
-                                        </div>
-                                    </div>
+                                    <label for="name">Confirmar Contraseña</label>
+                                    <input type="password" name="confirm_password" id="confirm_password"
+                                        class="form-control" placeholder="Confirme su contraseña">
+                                    <p></p>
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="status">Estado</label>
-                                    <select name="status" id="status" class="form-control">
-                                        <option value="1">Activo</option>
-                                        <option value="0">Inactivo</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="status">Mostrar en Inicio</label>
-                                    <select name="showHome" id="showHome" class="form-control">
-                                        <option value="Yes">Si</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="pb-5 pt-3">
-                    <button type="submit" class="btn btn-primary">Crear</button>
-                    <a href="{{ route('categories.index') }}" class="btn btn-outline-dark ml-3">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
                 </div>
             </form>
         </div>
@@ -88,14 +64,14 @@
 
 @section('customJs')
     <script>
-        $("#categoryForm").submit(function(event) {
+        $("#changePasswordForm").submit(function(event) {
             event.preventDefault();
             var element = $(this);
 
             $("button[type=submit]").prop('disabled', true);
 
             $.ajax({
-                url: '{{ route('categories.store') }}',
+                url: '{{ route('admin.processChangePassword') }}',
                 type: 'post',
                 data: element.serializeArray(),
                 dataType: 'json',
@@ -104,39 +80,41 @@
 
                     if (response["status"] == true) {
 
-                        window.location.href = "{{ route('categories.index') }}";
-
-                        $("#name").removeClass('is-invalid')
-                            .siblings('p')
-                            .removeClass('invalid-feedback')
-                            .html("");
-
-                        $("#slug").removeClass('is-invalid')
-                            .siblings('p')
-                            .removeClass('invalid-feedback')
-                            .html("");
+                        window.location.href = "{{ route('admin.showChangePasswordForm') }}";
 
                     } else {
                         var errors = response['errors'];
-                        if (errors['name']) {
-                            $("#name").addClass('is-invalid')
+                        if (errors['old_password']) {
+                            $("#old_password").addClass('is-invalid')
                                 .siblings('p')
                                 .addClass('invalid-feedback')
-                                .html(errors['name']);
+                                .html(errors['old_password']);
                         } else {
-                            $("#name").removeClass('is-invalid')
+                            $("#old_password").removeClass('is-invalid')
                                 .siblings('p')
                                 .removeClass('invalid-feedback')
                                 .html("");
                         }
 
-                        if (errors['slug']) {
-                            $("#slug").addClass('is-invalid')
+                        if (errors['new_password']) {
+                            $("#new_password").addClass('is-invalid')
                                 .siblings('p')
                                 .addClass('invalid-feedback')
-                                .html(errors['slug']);
+                                .html(errors['new_password']);
                         } else {
-                            $("#slug").removeClass('is-invalid')
+                            $("#new_password").removeClass('is-invalid')
+                                .siblings('p')
+                                .removeClass('invalid-feedback')
+                                .html("");
+                        }
+
+                        if (errors['confirm_password']) {
+                            $("#confirm_password").addClass('is-invalid')
+                                .siblings('p')
+                                .addClass('invalid-feedback')
+                                .html(errors['confirm_password']);
+                        } else {
+                            $("#confirm_password").removeClass('is-invalid')
                                 .siblings('p')
                                 .removeClass('invalid-feedback')
                                 .html("");
@@ -145,7 +123,7 @@
 
                 },
                 error: function(jqXHR, exception) {
-                    console.log("Something went wrong");
+                    console.log("Algo salió mal");
                 }
             })
         });
