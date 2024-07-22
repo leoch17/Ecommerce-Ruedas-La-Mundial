@@ -27,3 +27,16 @@
 .select2-container--default .select2-selection--multiple .select2-selection__rendered li {
   color: #000;
 }
+
+a>.fa-angle-left,
+a>.pull-right-container>.fa-angle-left {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+
+.fa-angle-left:before {
+  content: "\f104";
+}

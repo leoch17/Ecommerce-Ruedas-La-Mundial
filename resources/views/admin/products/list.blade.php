@@ -73,8 +73,9 @@
                                             @endif
 
                                         </td>
-                                        <td><a href="#">{{ $product->title }}</a></td>
-                                        <td>${{ $product->price }}</td>
+                                        <td><a href="{{ route('products.edit', $product->id) }}">{{ $product->title }}</a>
+                                        </td>
+                                        <td>${{ number_format($product->price, 2) }}</td>
                                         <td>{{ $product->qty }} disponible en Stock</td>
                                         <td>{{ $product->sku }}</td>
                                         <td>
@@ -121,7 +122,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td>Records Not Found</td>
+                                    <td>Elementos no encontrados</td>
                                 </tr>
                             @endif
 
@@ -131,13 +132,6 @@
                 </div>
                 <div class="card-footer clearfix">
                     {{ $products->links() }}
-                    {{-- <ul class="pagination pagination m-0 float-right">
-                        <li class="page-item"><a class="page-link" href="#">«</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">»</a></li>
-                    </ul> --}}
                 </div>
             </div>
         </div>

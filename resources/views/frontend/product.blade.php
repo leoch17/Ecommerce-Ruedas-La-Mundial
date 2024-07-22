@@ -77,12 +77,15 @@
                             <h2 class="price text-secondary"><del>${{ $product->compare_price }}</del></h2>
                         @endif
 
-                        <h2 class="price ">${{ $product->price }}</h2>
+                        <h2 class="price ">${{ number_format($product->price, 2) }}</h2>
 
                         {!! $product->short_description !!}
 
                         {{-- <a href="javascript:void(0);" onclick="addToCart({{ $product->id }});" class="btn btn-dark"><i
                                 class="fas fa-shopping-cart"></i> &nbsp;AÑADIR AL CARRITO</a> --}}
+
+                        <br />
+                        <br />
 
                         @if ($product->track_qty == 'Yes')
                             @if ($product->qty > 0)
@@ -273,14 +276,14 @@
                                 <div class="product-image position-relative">
 
 
-                                    <a href="{{ route('frontend.product', $product->slug) }}" class="product-img">
-                                        @if (!empty($productImage->image))
-                                            <img class="card-img-top"
-                                                src="{{ asset('/uploads/product/small/' . $productImage->image) }}">
-                                        @else
-                                            <img src="{{ asset('/admin-assets/img/default-150x150.png') }}">
-                                        @endif
-                                    </a>
+                                    {{-- <a href="{{ route('frontend.product', $product->slug) }}" class="product-img"> --}}
+                                    @if (!empty($productImage->image))
+                                        <img class="card-img-top"
+                                            src="{{ asset('/uploads/product/small/' . $productImage->image) }}">
+                                    @else
+                                        <img src="{{ asset('/admin-assets/img/default-150x150.png') }}">
+                                    @endif
+                                    {{-- </a> --}}
 
 
                                     <a class="whishlist" href="javascript:void(0)"
@@ -307,8 +310,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body text-center mt-3">
-                                    <a class="h6 link"
-                                        href="{{ route('frontend.product', $product->slug) }}">{{ $relProduct->title }}</a>
+                                    <div class="h6 link">{{ $relProduct->title }}</div>
                                     <div class="price mt-2">
                                         <span class="h5"><strong>${{ $relProduct->price }}</strong></span>
                                         @if ($relProduct->compare_price > 0)

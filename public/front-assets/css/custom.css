@@ -1,0 +1,9 @@
+#expiry_date {
+    flex-direction: row;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+.account a:hover {
+    color: red !important;
+}

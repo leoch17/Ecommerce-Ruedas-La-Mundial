@@ -117,7 +117,7 @@ class ProductController extends Controller
                 }
             }
 
-            $request->session()->flash('completado','Producto añadido satisfactoriamente');
+            $request->session()->flash('success','Producto añadido satisfactoriamente');
 
             return response()->json([
                 'status' => true,
@@ -209,7 +209,7 @@ class ProductController extends Controller
             $imageArray = explode(",", $request->image_array);
 
             //Save Gallery Pics
-            $request->session()->flash('completado','Producto editado satisfactoriamente');
+            $request->session()->flash('success','Producto editado satisfactoriamente');
 
             return response()->json([
                 'status' => true,
@@ -248,7 +248,7 @@ class ProductController extends Controller
 
         $product->delete();
 
-        $request->session()->flash('completado','Producto eliminado satisfactoriamente');
+        $request->session()->flash('success','Producto eliminado satisfactoriamente');
 
         return response()->json([
             'status' => true,

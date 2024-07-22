@@ -108,6 +108,22 @@
                                     </div>
 
                                     <div class="mb-3">
+                                        <label for="phone">Municipio</label>
+                                        <select name="municipality" id="municipality" class="form-control">
+                                            <option value="">Selecciona un Municipio</option>
+                                            @if ($municipalities->isNotEmpty())
+                                                @foreach ($municipalities as $municipality)
+                                                    <option
+                                                        {{ !empty($address) && $address->municipality_id == $municipality->id ? 'selected' : '' }}
+                                                        value="{{ $municipality->id }}">{{ $municipality->name }}
+                                                    </option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                        <p></p>
+                                    </div>
+
+                                    <div class="mb-3">
                                         <label for="phone">Dirección</label>
                                         <textarea name="address" id="address" cols="30" rows="5" class="form-control">{{ !empty($address) ? $address->address : '' }}</textarea>
                                         <p></p>

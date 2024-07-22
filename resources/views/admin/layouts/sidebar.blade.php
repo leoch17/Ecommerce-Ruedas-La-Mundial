@@ -1,9 +1,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-        <img src="{{ asset('admin-assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
+        <img src="{{ asset('admin-assets/img/logo-rlm.png') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">LARAVEL SHOP</span>
+        <span class="brand-text font-weight-light">RUEDAS LA MUNDIAL</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -93,6 +93,45 @@ with font-awesome or any other icon font library -->
                         <p>Páginas</p>
                     </a>
                 </li>
+
+                {{-- SECCIÓN 4X4 --}}
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-list-ul"></i>
+                        <p>
+                            Sección 4X4
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('articles.index') }}" class="nav-link">
+                                <i class="fas fa-truck-monster nav-icon"></i>
+                                <p>4X4</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('vehicles.index') }}" class="nav-link">
+                                <i class="fas fa-truck-pickup nav-icon"></i>
+                                <p>Vehículo</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('suspensions.index') }}" class="nav-link">
+                                <i class="fas fa-sort nav-icon"></i>
+                                <p>Suspensión</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('tires.index') }}" class="nav-link">
+                                <i class="fas fa-compact-disc nav-icon"></i>
+                                <p>Neumático</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

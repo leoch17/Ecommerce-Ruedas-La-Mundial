@@ -40,7 +40,7 @@
                         <p></p>
                     </div>
                     <div class="form-group small">
-                        <a href="#" class="forgot-link">¿Olvido la contraseña?</a>
+                        <a href="{{ route('frontend.forgotPassword') }}" class="forgot-link">¿Olvido la contraseña?</a>
                     </div>
                     <button type="submit" class="btn btn-dark btn-block btn-lg" value="Register">Registrarse</button>
                 </form>

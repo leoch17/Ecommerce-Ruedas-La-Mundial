@@ -38,7 +38,7 @@
 
                     <input type="submit" class="btn btn-dark btn-block btn-lg" value="Enviar">
                 </form>
-                <div class="text-center small">Volver a <a href="{{ route('account.login') }}">Inicio Sesión</a></div>
+                <div class="text-center small">Volver a <a href="{{ route('account.login') }}">Iniciar Sesión</a></div>
             </div>
         </div>
     </section>

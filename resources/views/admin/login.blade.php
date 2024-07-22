@@ -13,6 +13,9 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('admin-assets/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/css/custom.css') }}">
+
+    <!-- Fav Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('front-assets/images/logo-rlm.png') }}" />
 </head>
 
 <body class="hold-transition login-page">
@@ -74,9 +77,9 @@
                         <!-- /.col -->
                     </div>
                 </form>
-                <p class="mb-1 mt-3">
+                {{-- <p class="mb-1 mt-3">
                     <a href="forgot-password.html">Olvidé mi contraseña</a>
-                </p>
+                </p> --}}
             </div>
             <!-- /.card-body -->
         </div>

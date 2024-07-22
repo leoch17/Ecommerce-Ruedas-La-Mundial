@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Municipality;
 use App\Models\State;
 use App\Models\CustomerAddress;
 use App\Models\DiscountCoupon;
@@ -160,6 +161,8 @@ class CartController extends Controller
 
         $states = State::orderBy('name','ASC')->get();
 
+        $municipalities = Municipality::orderBy('name','ASC')->get();
+
         $subTotal = Cart::subtotal(2,'.','');
 
         // Aplicar descuento aquí
@@ -196,6 +199,7 @@ class CartController extends Controller
         
         return view('frontend.checkout',[
             'states' => $states,
+            'municipalities' => $municipalities,
             'customerAddress' => $customerAddress,
             'totalShippingCharge' => $totalShippingCharge,
             'discount' => $discount,
@@ -212,6 +216,7 @@ class CartController extends Controller
             'last_name'=>'required',
             'email'=>'required|email',
             'state'=>'required',
+            'municipality'=>'required',
             'address'=>'required',
             'city'=>'required',
             'zip'=>'required',
@@ -239,6 +244,7 @@ class CartController extends Controller
                 'email' => $request->email,
                 'mobile' => $request->mobile,
                 'state_id' => $request->state,
+                'municipality_id'=> $request->municipality,
                 'address' => $request->address,
                 'apartment' => $request->apartment,
                 'city' => $request->city,
@@ -271,7 +277,7 @@ class CartController extends Controller
                 $promoCode = $code->code;
             }
 
-            //Calculate shipping
+            //Calculando envío
             $shippingInfo = ShippingCharge::where('state_id',$request->state)->first();
 
             $totalQty = 0;
@@ -305,6 +311,7 @@ class CartController extends Controller
             $order->mobile = $request->mobile;
             $order->address = $request->address;
             $order->apartment = $request->apartment;
+            $order->municipality_id = $request->municipality;
             $order->city = $request->city;
             $order->zip = $request->zip;
             $order->notes = $request->order_notes;

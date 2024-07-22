@@ -16,10 +16,18 @@ use App\Http\Controllers\admin\ShippingController;
 use App\Http\Controllers\admin\SubCategoryController;
 use App\Http\Controllers\admin\TempImagesController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\ArticleController;
+use App\Http\Controllers\admin\ArticleSuspensionController;
+use App\Http\Controllers\admin\ArticleTireController;
+use App\Http\Controllers\admin\ArticleImageController;
+use App\Http\Controllers\admin\VehicleController;
+use App\Http\Controllers\admin\SuspensionController;
+use App\Http\Controllers\admin\TireController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ShopSpecialController;
 use Illuminate\Http\Request;
 
 
@@ -46,6 +54,10 @@ use Illuminate\Http\Request;
 Route::get('/',[FrontController::class,'index'])->name('frontend.home');
 Route::get('/shop/{categorySlug?}/{subCategorySlug?}',[ShopController::class,'index'])->name('frontend.shop');
 Route::get('/product/{slug}',[ShopController::class,'product'])->name('frontend.product');
+
+Route::get('/shop-special/{vehicleSlug?}/{suspensionSlug?}',[ShopSpecialController::class,'index'])->name('frontend.shop-special');
+Route::get('/article/{slug}',[ShopSpecialController::class,'article'])->name('frontend.article');
+
 Route::get('/cart',[CartController::class,'cart'])->name('frontend.cart');
 Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('frontend.addToCart');
 Route::post('/update-cart',[CartController::class,'updateCart'])->name('frontend.updateCart');
@@ -187,6 +199,46 @@ Route::group(['prefix' => 'admin'],function(){
         Route::put('/pages/{page}', [PageController::class, 'update'])->name('pages.update');
         Route::delete('/pages/{page}', [PageController::class, 'destroy'])->name('pages.delete');
 
+        // Rutas de Artículos 4x4
+        Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+        Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
+        Route::post('/articles', [ArticleController::class, 'store'])->name('articles.store');
+        Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
+        Route::put('/articles/{article}', [ArticleController::class, 'update'])->name('articles.update');
+        Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->name('articles.delete');
+        // Route::get('/get-articles',[ArticleController::class,'getArticles'])->name('articles.getArticles');
+
+        Route::get('/article-suspensions', [ArticleSuspensionController::class, 'index'])->name('article-suspensions.index');
+        Route::get('/article-tires', [ArticleTireController::class, 'index'])->name('article-tires.index');
+
+
+        Route::post('/article-images/update', [ArticleImageController::class, 'update'])->name('article-images.update');
+        Route::delete('/article-images', [ArticleImageController::class, 'destroy'])->name('article-images.destroy');
+
+        // Rutas de Vehículos
+        Route::get('/vehicles', [VehicleController::class, 'index'])->name('vehicles.index');
+        Route::get('/vehicles/create', [VehicleController::class, 'create'])->name('vehicles.create');
+        Route::post('/vehicles', [VehicleController::class, 'store'])->name('vehicles.store');
+        Route::get('/vehicles/{vehicle}/edit', [VehicleController::class, 'edit'])->name('vehicles.edit');
+        Route::put('/vehicles/{vehicle}', [VehicleController::class, 'update'])->name('vehicles.update');
+        Route::delete('/vehicles/{vehicle}', [VehicleController::class, 'destroy'])->name('vehicles.delete');
+
+        // Rutas de Suspensiones
+        Route::get('/suspensions', [SuspensionController::class, 'index'])->name('suspensions.index');
+        Route::get('/suspensions/create', [SuspensionController::class, 'create'])->name('suspensions.create');
+        Route::post('/suspensions', [SuspensionController::class, 'store'])->name('suspensions.store');
+        Route::get('/suspensions/{suspension}/edit', [SuspensionController::class, 'edit'])->name('suspensions.edit');
+        Route::put('/suspensions/{suspension}', [SuspensionController::class, 'update'])->name('suspensions.update');
+        Route::delete('/suspensions/{suspension}', [SuspensionController::class, 'destroy'])->name('suspensions.delete');
+
+        // Rutas de Neumáticos
+        Route::get('/tires', [TireController::class, 'index'])->name('tires.index');
+        Route::get('/tires/create', [TireController::class, 'create'])->name('tires.create');
+        Route::post('/tires', [TireController::class, 'store'])->name('tires.store');
+        Route::get('/tires/{tire}/edit', [TireController::class, 'edit'])->name('tires.edit');
+        Route::put('/tires/{tire}', [TireController::class, 'update'])->name('tires.update');
+        Route::delete('/tires/{tire}', [TireController::class, 'destroy'])->name('tires.delete');
+
         //temp-images.create
         Route::post('/upload-temp-image', [TempImagesController::class, 'create'])->name('temp-images.create');
 
@@ -207,6 +259,5 @@ Route::group(['prefix' => 'admin'],function(){
         })->name('getSlug');
 
     });
-
 
 });

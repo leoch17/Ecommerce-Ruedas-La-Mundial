@@ -152,17 +152,20 @@
                             </div>
                         </div>
 
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h2 class="h4 mb-3">Productos Relacionados</h2>
-                                <div class="mb-3">
-                                    <select multiple class="related-product w-100" name="related_products[]"
-                                        id="related_products">
-                                    </select>
-                                    <p class="error"></p>
+                        <div class="col-md-11">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h2 class="h4 mb-3">Productos Relacionados</h2>
+                                    <div class="mb-3">
+                                        <select multiple class="related-product w-100" name="related_products[]"
+                                            id="related_products">
+                                        </select>
+                                        <p class="error"></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
 
                     </div>
                     <div class="col-md-4">
@@ -196,6 +199,11 @@
                                     <label for="category">Sub Categoría</label>
                                     <select name="sub_category" id="sub_category" class="form-control">
                                         <option value="">Seleccione una Sub Categoría</option>
+                                        {{-- @if ($subCategories->isNotEmpty())
+                                            @foreach ($subCategories as $subCategory)
+                                                <option value="{{ $subCategory->id }}">{{ $subCategory->name }}</option>
+                                            @endforeach
+                                        @endif --}}
                                     </select>
                                 </div>
                             </div>
@@ -337,6 +345,28 @@
                 }
             });
         })
+
+        // $("#sub_category").change(function(event) {
+        //     var category_id = $(this).val();
+        //     $.ajax({
+        //         url: '{{ route('product-subcategories.index') }}',
+        //         type: 'get',
+        //         data: {
+        //             category_id: category_id
+        //         },
+        //         dataType: 'json',
+        //         success: function(response) {
+        //             $("#sub_category").find("option").not(":first").remove();
+        //             $.each(response["subCategories"], function(key, item) {
+        //                 $("#sub_category").append(
+        //                     `<option value='${item.id}'>${item.name}</option>`);
+        //             });
+        //         },
+        //         error: function() {
+        //             console.log("Something Went Wrong");
+        //         }
+        //     });
+        // })
 
         Dropzone.autoDiscover = false;
         const dropzone = $("#image").dropzone({

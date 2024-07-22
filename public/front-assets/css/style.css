@@ -490,6 +490,22 @@ progress {
     line-height: 1.2
 }
 
+.fa-heart {
+    color: #000;
+}
+
+.fa-heart:hover {
+    color: #DF1017;
+}
+
+.fa-heart.sidebar {
+    color: #fff;
+}
+
+.fa-heart.sidebar:hover {
+    color: #fff;
+}
+
 .list-unstyled {
     padding-left: 0;
     list-style: none
@@ -3018,14 +3034,14 @@ fieldset:disabled .btn {
 .nav-link {
     display: block;
     padding: 0.5rem 1rem;
-    color: #0d6efd;
+    color: none;
     text-decoration: none;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out
 }
 
 .nav-link:hover,
 .nav-link:focus {
-    color: #0a58ca
+    color: none
 }
 
 .nav-link.disabled {
@@ -3630,7 +3646,7 @@ fieldset:disabled .btn {
 .page-link {
     position: relative;
     display: block;
-    color: #0d6efd;
+    color: #DF1017;
     text-decoration: none;
     background-color: #fff;
     border: 1px solid #dee2e6;
@@ -3639,14 +3655,14 @@ fieldset:disabled .btn {
 
 .page-link:hover {
     z-index: 2;
-    color: #0a58ca;
+    color: #DF1017;
     background-color: #e9ecef;
     border-color: #dee2e6
 }
 
 .page-link:focus {
     z-index: 3;
-    color: #0a58ca;
+    color: #DF1017;
     background-color: #e9ecef;
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25)
@@ -3659,8 +3675,8 @@ fieldset:disabled .btn {
 .page-item.active .page-link {
     z-index: 3;
     color: #fff;
-    background-color: #0d6efd;
-    border-color: #0d6efd
+    background-color: #DF1017;
+    border-color: #DF1017
 }
 
 .page-item.disabled .page-link {
@@ -12026,7 +12042,7 @@ body {
 }
 
 .breadcrumb a {
-    color: #f7ca0d
+    color: #FC0001
 }
 
 figure,
@@ -12087,7 +12103,7 @@ ul li {
 }
 
 .text-primary {
-    color: #f7ca0d !important
+    color: #FC0001 !important
 }
 
 .text-secondary {
@@ -12095,7 +12111,7 @@ ul li {
 }
 
 .bg-dark {
-    background: #DE703F
+    background: #DF1017
 }
 
 a.link {
@@ -12103,13 +12119,13 @@ a.link {
 }
 
 a.link:hover {
-    color: #f7ca0d
+    color: #FC0001
 }
 
 .btn-dark {
     padding: 10px 20px;
-    background-color: #DE703F;
-    border-color: #DE703F;
+    background-color: #DF1017;
+    border-color: #DF1017;
     border-radius: 0px
 }
 
@@ -12134,18 +12150,18 @@ header .navbar .nav-link {
 }
 
 header .navbar .nav-link:hover {
-    color: #f7ca0d
+    color: #FC0001
 }
 
 header .navbar .dropdown-item:focus {
-    color: #f7ca0d;
+    color: #FC0001;
     background-color: rgba(255, 255, 255, 0.15)
 }
 
 header .right-nav {
     position: absolute;
     top: 10px;
-    right: 10px
+    right: -10% !important
 }
 
 header .btn-dark {
@@ -12156,21 +12172,21 @@ header .btn-dark {
 
 header .btn-dark:hover {
     background-color: transparent;
-    color: #f7ca0d;
+    color: #FC0001;
     outline: none;
     box-shadow: none
 }
 
 header .btn-dark:active {
     background-color: transparent;
-    color: #f7ca0d;
+    color: #FC0001;
     outline: none;
     box-shadow: none
 }
 
 header .btn-dark:focus {
     background-color: transparent;
-    color: #f7ca0d;
+    color: #FC0001;
     outline: none;
     box-shadow: none
 }
@@ -12194,7 +12210,7 @@ main {
     content: '';
     width: 70px;
     height: 5px;
-    background-color: #f7ca0d;
+    background-color: #DF1017;
     left: 0;
     bottom: 0px
 }
@@ -12219,7 +12235,7 @@ main {
     content: '';
     width: 70px;
     height: 5px;
-    background-color: #f7ca0d;
+    background-color: #DF1017;
     left: 0;
     bottom: 0px
 }
@@ -12269,7 +12285,7 @@ footer {
 }
 
 footer .copyright-area {
-    background-color: #a08310
+    background-color: #DF1017
 }
 
 footer h3 {
@@ -12286,7 +12302,7 @@ footer h3:after {
     content: '';
     width: 70px;
     height: 5px;
-    background-color: #f7ca0d;
+    background-color: #DF1017;
     left: 0;
     bottom: 0px
 }
@@ -12299,7 +12315,7 @@ footer a {
 }
 
 footer a:hover {
-    color: #f7ca0d
+    color: #FC0001
 }
 
 .section-2 {
@@ -12354,7 +12370,7 @@ footer a:hover {
 }
 
 .section-3 .cat-card .right:hover {
-    background-color: #f7ca0d;
+    background-color: #FC0001;
     color: #FFF
 }
 
@@ -12412,7 +12428,7 @@ footer a:hover {
 }
 
 .section-4 .product-card:hover .whishlist:hover {
-    color: #f7ca0d
+    color: #DF1017
 }
 
 .section-6 .product-card {
@@ -12478,7 +12494,7 @@ footer a:hover {
 }
 
 .section-6 .sidebar .accordion-button:hover {
-    color: #f7ca0d
+    color: #FC0001
 }
 
 .section-6 .sidebar .accordion-item {
@@ -12504,7 +12520,7 @@ footer a:hover {
 }
 
 .section-6 .sidebar .accordion-item .nav-link:hover {
-    color: #f7ca0d
+    color: #FC0001
 }
 
 .section-6 .sidebar .nav-link {
@@ -12651,7 +12667,7 @@ footer a:hover {
 }
 
 .section-9 .table thead {
-    background-color: #f7ca0d;
+    background-color: #DF1017;
     color: #FFF
 }
 
@@ -12748,7 +12764,7 @@ footer a:hover {
 }
 
 .section-10 .login-form a:hover {
-    color: #f7ca0d
+    color: #FC0001
 }
 
 .section-11 .nav-item .nav-link {
@@ -12780,7 +12796,7 @@ footer a:hover {
 }
 
 .section-11 .card table a:hover {
-    color: #f7ca0d
+    color: #FC0001
 }
 
 .section-11 .card .product-title a {
@@ -12789,7 +12805,7 @@ footer a:hover {
 }
 
 .section-11 .card .product-title a:hover {
-    color: #f7ca0d
+    color: #FC0001
 }
 
 .section-11 #account-panel i {
@@ -12797,7 +12813,7 @@ footer a:hover {
 }
 
 .section-11 #account-panel .nav-link:hover {
-    background-color: #f7ca0d
+    background-color: #DF1017
 }
 
 .checkout-form {

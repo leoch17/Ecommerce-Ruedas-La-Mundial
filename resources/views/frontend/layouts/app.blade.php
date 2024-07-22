@@ -37,6 +37,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/slick-theme.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/ion.rangeSlider.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/custom.css') }}" />
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,29 +47,29 @@
         rel="stylesheet">
 
     <!-- Fav Icon -->
-    <link rel="shortcut icon" type="image/x-icon" href="#" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('front-assets/images/logo-rlm.png') }}" />
 
     <meta name="csrf_token" content="{{ csrf_token() }}">
 </head>
 
 <body data-instant-intensity="mousedown">
 
+    {{-- Versión Web --}}
+
     <div class="bg-light top-header">
         <div class="container">
             <div class="row align-items-center py-3 d-none d-lg-flex justify-content-between">
                 <div class="col-lg-4 logo">
                     <a href="{{ route('frontend.home') }}" class="text-decoration-none">
-                        {{-- <span class="h1 text-uppercase text-primary bg-dark px-2">Online</span>
-                        <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">SHOP</span> --}}
                         <img src="{{ asset('front-assets/images/logo-ruedas-la-mundial.png') }}" style="width: 70%">
                     </a>
                 </div>
-                <div class="col-lg-6 col-6 text-left  d-flex justify-content-end align-items-center">
+                <div class="account col-lg-6 col-6 text-left  d-flex justify-content-end align-items-center">
                     @if (Auth::check())
                         <a href="{{ route('account.profile') }}" class="nav-link text-dark">Mi Cuenta</a>
                     @else
                         <a href="{{ route('account.login') }}" class="nav-link text-dark">
-                            Iniciar Sesión/Registrarse
+                            Iniciar Sesión
                         </a>
                     @endif
                     <form action="{{ route('frontend.shop') }}" method="get">
@@ -85,20 +86,24 @@
         </div>
     </div>
 
+    {{-- Versión Web --}}
+
+    {{-- Versión Movil --}}
+
     <header class="bg-dark">
         <div class="container">
             <nav class="navbar navbar-expand-xl" id="navbar">
                 <a href="{{ route('frontend.home') }}" class="text-decoration-none mobile-logo" style="width: 40%">
-                    <img src="{{ asset('front-assets/images/logo-ruedas-la-mundial.png') }}" style="margin-top: -5%">
+                    <img src="{{ asset('front-assets/images/logo-ruedas-la-mundial-blanco.png') }}"
+                        style="margin-top: -5%; width: 80%">
                 </a>
                 <button class="navbar-toggler menu-btn" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
-                    <!-- <span class="navbar-toggler-icon icon-menu"></span> -->
                     <i class="navbar-toggler-icon fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-auto mb-1 mb-lg-0">
 
                         @if (getCategories()->isNotEmpty())
                             @foreach (getCategories() as $category)
@@ -121,6 +126,12 @@
                                     @endif
                                 </li>
                             @endforeach
+                            <li class="nav-item dropdown">
+                                <a href="{{ route('frontend.shop-special') }}" class="btn btn-dark"
+                                    aria-expanded="false">
+                                    Sección 4X4
+                                </a>
+                            </li>
                         @endif
 
 
@@ -128,25 +139,35 @@
                     </ul>
                 </div>
 
-                <div class="right-nav py-0 px-5">
+                @if (Auth::check())
+                    <div class="right-nav" style="padding-right: 75px">
+                        <a href="{{ route('account.profile') }}" class="nav-link text-dark"><i
+                                class="fa fa-user-circle text-primary"></i></a>
+                    </div>
+                @else
+                    <div class="right-nav" style="padding-right: 75px">
+                        <a href="{{ route('account.login') }}" class="nav-link text-dark">
+                            <i class="fas fa-user text-primary"></i>
+                        </a>
+                    </div>
+                @endif
+
+                <div class="right-nav py-1" style="padding-right: 60px">
                     <a href="{{ route('frontend.shop') }}" class="d-flex pt-2">
                         <i class="fas fa-shopping-bag text-primary"></i>
                     </a>
                 </div>
-                <div class="right-nav py-0 px-2">
+                <div class="right-nav py-1" style="padding-right: 30px">
                     <a href="{{ route('frontend.cart') }}" class="d-flex pt-2">
                         <i class="fas fa-shopping-cart text-primary"></i>
                     </a>
                 </div>
-                {{-- <div class="right-nav py-0 px-0">
-                    <a href="{{ route('account.wishlist') }}" class="d-flex pt-2">
-                        <i class="far fa-heart text-primary"></i>
-                    </a>
-                </div> --}}
 
             </nav>
         </div>
     </header>
+
+    {{-- Versión Movil --}}
 
     <main>
         @yield('content')
@@ -158,10 +179,24 @@
                 <div class="col-md-4">
                     <div class="footer-card">
                         <h3>Póngase en Contacto</h3>
-                        <p>No dolore ipsum accusam no lorem. <br>
-                            123 Street, New York, USA <br>
-                            exampl@example.com <br>
-                            000 000 0000</p>
+                        <a href="mailto:mercadeo@glmundial.com"><i class="fas fa-envelope"></i>
+                            mercadeo@glmundial.com</a>
+                        <a href="https://maps.app.goo.gl/pKecwNQnCsQHQDAp9" target="_blank"><i
+                                class="fas fa-map"></i> Ruedas La Mundial Cecilio Acosta</a>
+                        <a href="https://maps.app.goo.gl/Joqq2ap21zkqSb4BA" target="_blank"><i
+                                class="fas fa-map"></i> Ruedas La Mundial 72</a>
+                        <a href="https://maps.app.goo.gl/Q52aZYrUVFa6ZcAL7" target="_blank"><i
+                                class="fas fa-map"></i> Ruedas La Mundial Delicias</a>
+                        <a href="https://maps.app.goo.gl/jKCc5mG2Q4y6XWUd8" target="_blank"><i
+                                class="fas fa-map"></i> Ruedas La Mundial Sabaneta</a>
+                        <a href="https://maps.app.goo.gl/rXqPkJquzg8r6yNz8" target="_blank"><i
+                                class="fas fa-map"></i> Ruedas La Mundial Sur</a>
+                        <a href="https://maps.app.goo.gl/KKY5x4huwHMkpwtQ8" target="_blank"><i
+                                class="fas fa-map"></i> Ruedas La Mundial Veritas</a>
+                        <a href="https://api.whatsapp.com/send/?phone=584246265544" target="_blank"><i
+                                class="fab fa-whatsapp"></i>
+                            +58 424-6265544</a>
+                        </p>
                     </div>
                 </div>
 
@@ -191,9 +226,14 @@
                     <div class="footer-card">
                         <h3>Mi Cuenta</h3>
                         <ul>
-                            <li><a href="{{ route('account.register') }}" title="Sell">Iniciar Sesión</a></li>
-                            <li><a href="#" title="Advertise">Registrarse</a></li>
-                            <li><a href="#" title="Contact Us">Mis Pedidos</a></li>
+                            <li><a href="{{ route('account.register') }}" title="Sell"><i class="fas fa-user"></i>
+                                    Iniciar Sesión</a></li>
+                            <li><a href="{{ route('account.register') }}" title="Advertise"><i
+                                        class="fas fa-user-plus"></i> Registrarse</a></li>
+                            <li><a href="{{ route('account.orders') }}" title="Contact Us"><i
+                                        class="fas fa-list"></i> Mis Pedidos</a></li>
+                            <li><a href="{{ route('account.wishlist') }}" title="Contact Us"><i
+                                        class="fas fa-heart sidebar"></i> Lista de Deseos</a></li>
                         </ul>
                     </div>
                 </div>

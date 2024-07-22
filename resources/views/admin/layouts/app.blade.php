@@ -22,6 +22,10 @@
     <link rel="stylesheet" href="{{ asset('admin-assets/css/datetimepicker.css') }}">
 
     <link rel="stylesheet" href="{{ asset('admin-assets/css/custom.css') }}">
+
+    {{-- fav icon --}}
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('front-assets/images/logo-rlm.png') }}" />
+
     <meta name="csrf_token" content="{{ csrf_token() }}">
 </head>
 
@@ -51,7 +55,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link p-0 pr-3" data-toggle="dropdown" href="#">
-                        <img src="{{ asset('admin-assets/img/avatar5.png') }}" class='img-circle elevation-2'
+                        <img src="{{ asset('admin-assets/img/logo-rlm.png') }}" class='img-circle elevation-2'
                             width="40" height="40" alt="">
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-3">

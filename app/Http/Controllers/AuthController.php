@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CustomerAddress;
+use App\Models\Municipality;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\User;
@@ -95,6 +96,8 @@ class AuthController extends Controller
 
         $states = State::orderBy('name','ASC')->get();
 
+        $municipalities = Municipality::orderBy('name','ASC')->get();
+
         $user = User::where('id',$userId)->first();
 
         $address = CustomerAddress::where('user_id',$userId)->first();
@@ -102,6 +105,7 @@ class AuthController extends Controller
         return view('frontend.account.profile',[
             'user' => $user,
             'states' => $states,
+            'municipalities' => $municipalities,
             'address' => $address
         ]);
     }
@@ -144,6 +148,7 @@ class AuthController extends Controller
             'last_name'=>'required',
             'email'=>'required|email',
             'state_id'=>'required',
+            'municipality_id'=>'required',
             'address'=>'required',
             'city'=>'required',
             'zip'=>'required',
@@ -166,6 +171,7 @@ class AuthController extends Controller
                     'email' => $request->email,
                     'mobile' => $request->mobile,
                     'state_id' => $request->state_id,
+                    'municipality_id' => $request->municipality_id,
                     'address' => $request->address,
                     'apartment' => $request->apartment,
                     'city' => $request->city,

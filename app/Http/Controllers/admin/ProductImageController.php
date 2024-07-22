@@ -43,7 +43,7 @@ class ProductImageController extends Controller
             'status' => true,
             'image_id' => $productImage->id,
             'ImagePath' => asset('uploads/product/small/'.$productImage->image),
-            'message' => 'Image saved successfully'
+            'message' => 'Imagen guardada satisfactoriamente'
         ]);
     }
 
@@ -53,7 +53,7 @@ class ProductImageController extends Controller
         if (empty($productImage)) {
             return response()->json([
                 'status' => false,
-                'message' => 'Image not found'
+                'message' => 'Imagen no encontrada'
             ]);
         }
 
@@ -65,7 +65,7 @@ class ProductImageController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => 'Image deleted successfully'
+            'message' => 'Imagen no encontrada'
         ]);
     }
 }

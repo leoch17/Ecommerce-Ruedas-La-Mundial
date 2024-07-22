@@ -8,52 +8,54 @@
                 <div class="carousel-item active">
 
                     <picture>
-                        <source media="(max-width: 799px)" srcset="{{ asset('front-assets/images/carousel-1-m.jpg') }}" />
-                        <source media="(min-width: 800px)" srcset="{{ asset('front-assets/images/carousel-1.jpg') }}" />
-                        <img src="{{ asset('front-assets/images/carousel-1.jpg') }}" alt="" />
+                        <source media="(max-width: 799px)" srcset="{{ asset('front-assets/images/passenger_car.jpg') }}" />
+                        <source media="(min-width: 700px)" srcset="{{ asset('front-assets/images/passenger_car.jpg') }}" />
+                        <img style="width:100%; height:100%" src="{{ asset('front-assets/images/passenger_car.jpg') }}"
+                            alt="" />
                     </picture>
 
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3">
-                            <h1 class="display-4 text-white mb-3">Kids Fashion</h1>
+                            <h1 class="display-4 text-white mb-3">Passenger Car</h1>
                             <p class="mx-md-5 px-5">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo
                                 stet amet amet ndiam elitr ipsum diam</p>
-                            <a class="btn btn-outline-light py-2 px-4 mt-3" href="#">Comprar Ahora</a>
+                            <a class="btn btn-outline-light py-2 px-4 mt-3" href="{{ route('frontend.shop') }}">Comprar
+                                Ahora</a>
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
 
                     <picture>
-                        <source media="(max-width: 799px)" srcset="{{ asset('front-assets/images/carousel-2-m.jpg') }}" />
-                        <source media="(min-width: 800px)" srcset="{{ asset('front-assets/images/carousel-2.jpg') }}" />
-                        <img src="{{ asset('front-assets/images/carousel-2.jpg') }}" alt="" />
+                        <source media="(max-width: 799px)" srcset="{{ asset('front-assets/images/SUV-CUV.jpg') }}" />
+                        <source media="(min-width: 800px)" srcset="{{ asset('front-assets/images/SUV-CUV.jpg') }}" />
+                        <image style="width:100%; height:100%" src="{{ asset('front-assets/images/SUV-CUV.jpg') }}" />
                     </picture>
 
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3">
-                            <h1 class="display-4 text-white mb-3">Womens Fashion</h1>
+                            <h1 class="display-4 text-white mb-3">SUV / 4x4</h1>
                             <p class="mx-md-5 px-5">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo
                                 stet amet amet ndiam elitr ipsum diam</p>
-                            <a class="btn btn-outline-light py-2 px-4 mt-3" href="#">Comprar Ahora</a>
+                            <a class="btn btn-outline-light py-2 px-4 mt-3" href="{{ route('frontend.shop') }}">Comprar
+                                Ahora</a>
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
 
                     <picture>
-                        <source media="(max-width: 799px)" srcset="{{ asset('front-assets/images/carousel-3-m.jpg') }}" />
-                        <source media="(min-width: 800px)" srcset="{{ asset('front-assets/images/carousel-3.jpg') }}" />
-                        <img src="{{ asset('front-assets/images/carousel-3.jpg') }}" alt="" />
+                        <source media="(max-width: 799px)" srcset="{{ asset('front-assets/images/dynapro_at2.jpg') }}" />
+                        <source media="(min-width: 800px)" srcset="{{ asset('front-assets/images/dynapro_at2.jpg') }}" />
+                        <img style="width:100%; height:100%" src="{{ asset('front-assets/images/dynapro_at2.jpg') }}" />
                     </picture>
 
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3">
-                            <h1 class="display-4 text-white mb-3">Shop Online at Flat 70% off on Branded Clothes
-                            </h1>
-                            <p class="mx-md-5 px-5">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo
-                                stet amet amet ndiam elitr ipsum diam</p>
-                            <a class="btn btn-outline-light py-2 px-4 mt-3" href="#">Comprar Ahora</a>
+                            <h1 class="display-4 text-white mb-3">DYNAPRO AT2</h1>
+                            <p class="mx-md-5 px-5">Perfectly balanced tire for both on and off road</p>
+                            <a class="btn btn-outline-light py-2 px-4 mt-3" href="{{ route('frontend.shop') }}">Comprar
+                                Ahora</a>
                         </div>
                     </div>
                 </div>
@@ -119,7 +121,7 @@
                                 </div>
                                 <div class="right">
                                     <div class="cat-data">
-                                        <a class="dropdown-item nav-link" style="text-decoration: yellow"
+                                        <a class="dropdown-item nav-link"
                                             href="{{ route('frontend.shop', [$category->slug]) }}">
                                             <h2>{{ $category->name }}</h2>
                                         </a>

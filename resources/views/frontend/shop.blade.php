@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="sub-title mt-5">
-                        <h2>Marcas</h3>
+                        <h2>Sub-Categorías</h3>
                     </div>
 
                     <div class="card">
@@ -157,7 +157,8 @@
                                             <a class="h6 link"
                                                 href="{{ route('frontend.product', $product->slug) }}">{{ $product->title }}</a>
                                             <div class="price mt-2">
-                                                <span class="h5"><strong>${{ $product->price }}</strong></span>
+                                                <span
+                                                    class="h5"><strong>${{ number_format($product->price, 2) }}</strong></span>
                                                 @if ($product->compare_price > 0)
                                                     <span
                                                         class="h6 text-underline"><del>${{ $product->compare_price }}</del></span>

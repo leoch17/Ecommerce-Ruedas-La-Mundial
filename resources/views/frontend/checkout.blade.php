@@ -67,6 +67,24 @@
                                         </div>
                                     </div>
 
+
+
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <select name="municipality" id="municipality" class="form-control">
+                                                <option value="">Selecciona un Municipio</option>
+                                                @if ($municipalities->isNotEmpty())
+                                                    @foreach ($municipalities as $municipality)
+                                                        <option
+                                                            {{ !empty($customerAddress) && $customerAddress->municipality == $municipality->id ? 'selected' : '' }}
+                                                            value="{{ $municipality->id }}">{{ $municipality->name }}
+                                                        </option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-12">
                                         <div class="mb-3">
                                             <textarea name="address" id="address" cols="30" rows="3" placeholder="Dirección" class="form-control">{{ !empty($customerAddress) ? $customerAddress->address : '' }}</textarea>
@@ -181,12 +199,11 @@
                             <div class="">
                                 <input checked type="radio" name="payment_method" value="cod"
                                     id="payment_method_one">
-                                <label for="payment_method_one" class="form-check-label">COD</label>
+                                <label for="payment_method_one" class="form-check-label">Comprar en Sitio</label>
                             </div>
 
                             <div class="">
-                                <input type="radio" name="payment_method" value="cod" id="payment_method_two"
-                                    disabled>
+                                <input type="radio" name="payment_method" value="cod" id="payment_method_two">
                                 <label for="payment_method_two" class="form-check-label">Tarjeta</label>
                             </div>
 
@@ -196,22 +213,35 @@
                             </div>
 
                             <div class="card-body p-0 d-none mt-3" id="card-payment-form-1">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="card_type">Tipo de Tarjeta</label><br />
+                                        <select name="card_type" id="card_type">
+                                            <option value="">Seleccione su Tarjeta</option>
+                                            <option value="">Visa</option>
+                                            <option value="">Maestro</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="mb-3">
                                     <label for="card_number" class="mb-2">Número de Tarjeta</label>
                                     <input type="text" name="card_number" id="card_number"
                                         placeholder="0000 0000 0000 0000" class="form-control">
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="expiry_date" class="mb-2">Fecha de Caducidad</label>
-                                        <input type="text" name="expiry_date" id="expiry_date" placeholder="MM/YYYY"
-                                            class="form-control">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="expiry_date" class="mb-2">CVV</label>
+                                    <div class="col-md-12">
+                                        <label for="expiry_date" class="mb-2">Fecha de Caducidad y CVV</label><br />
+                                        <input type="text" name="expiry_date" id="expiry_date" placeholder="MM/AAAA"
+                                            class="form-control"><br />
                                         <input type="text" name="expiry_date" id="expiry_date" placeholder="123"
                                             class="form-control">
                                     </div>
+                                    {{-- <div class="col-md-6">
+                                        <label for="expiry_date" class="mb-2">CVV</label>
+                                        <input type="text" name="expiry_date" id="expiry_date" placeholder="123"
+                                            class="form-control">
+                                    </div> --}}
                                 </div>
                             </div>
 
@@ -221,11 +251,12 @@
                                     <input type="text" name="direccion-correo" id="direccion-correo"
                                         placeholder="example@email.com" class="form-control">
 
-                                    <label for="name-complete" class="mb-2">Nombre Completo</label>
+                                    <label style="padding-top: 5%" for="name-complete" class="mb-2">Nombre
+                                        Completo</label>
                                     <input type="text" name="name-complete" id="name-complete"
                                         placeholder="John Freeman" class="form-control">
 
-                                    <label for="concept" class="mb-2">Concepto</label>
+                                    <label style="padding-top: 5%" for="concept" class="mb-2">Concepto</label>
                                     <input type="text" name="concept" id="concept" placeholder="Compra de Producto"
                                         class="form-control">
                                 </div>
@@ -354,6 +385,18 @@
                                 .html(errors.state);
                         } else {
                             $("#state").removeClass('is-invalid')
+                                .siblings("p")
+                                .removeClass('invalid-feedback')
+                                .html('');
+                        }
+
+                        if (errors.municipality) {
+                            $("#municipality").addClass('is-invalid')
+                                .siblings("p")
+                                .addClass('invalid-feedback')
+                                .html(errors.municipality);
+                        } else {
+                            $("#municipality").removeClass('is-invalid')
                                 .siblings("p")
                                 .removeClass('invalid-feedback')
                                 .html('');
