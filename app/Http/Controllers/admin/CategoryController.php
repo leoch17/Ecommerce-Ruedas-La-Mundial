@@ -19,7 +19,7 @@ class CategoryController extends Controller
             $categories = $categories->where('name','like','%'.$request->get('keyword').'%');
         }
         $categories = $categories->paginate(10);
-        
+
         return view('admin.category.list',compact('categories'));
     }
 
@@ -34,7 +34,7 @@ class CategoryController extends Controller
         ]);
 
         if ($validator->passes()) {
-            
+
             $category = new Category();
             $category->name = $request->name;
             $category->slug = $request->slug;
@@ -109,7 +109,7 @@ class CategoryController extends Controller
         ]);
 
         if ($validator->passes()) {
-            
+
             $category->name = $request->name;
             $category->slug = $request->slug;
             $category->status = $request->status;

@@ -126,12 +126,12 @@
                                     @endif
                                 </li>
                             @endforeach
-                            <li class="nav-item dropdown">
+                            {{-- <li class="nav-item dropdown">
                                 <a href="{{ route('frontend.shop-special') }}" class="btn btn-dark"
                                     aria-expanded="false">
                                     Sección 4X4
                                 </a>
-                            </li>
+                            </li> --}}
                         @endif
 
 
@@ -213,7 +213,7 @@
                                     </li>
                                 @endforeach
                             @endif
-                            {{-- 
+                            {{--
                             <li><a href="contact-us.php" title="Contact Us">Contáctanos</a></li>
                             <li><a href="#" title="Privacy">Confidencialidad</a></li>
                             <li><a href="#" title="Privacy">Términos y Condiciones</a></li>

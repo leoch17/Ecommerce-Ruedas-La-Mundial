@@ -115,7 +115,7 @@
                             <div class="cat-card">
                                 <div class="left">
                                     @if ($category->image != '')
-                                        <img src="{{ asset('uploads/category/' . $category->image) }}" alt=""
+                                        <img src="{{ asset('/uploads/category/' . $category->image) }}" alt=""
                                             class="img-fluid">
                                     @endif
                                 </div>

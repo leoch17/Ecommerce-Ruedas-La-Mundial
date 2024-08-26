@@ -22,7 +22,7 @@ class ShopController extends Controller
 
         $products = Product::where('status',1);
 
-        //Apply Filters here
+        //Aplicar filtros aquí
         if(!empty($categorySlug)) {
             $category = Category::where('slug',$categorySlug)->first();
             $products = $products->where('category_id',$category->id);
