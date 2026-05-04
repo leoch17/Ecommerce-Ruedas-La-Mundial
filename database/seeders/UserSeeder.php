@@ -15,11 +15,11 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'Admin',
-            'email' => 'it@glmundial.com',
+            'email' => 'admin@hotmail.com',
             'phone' => 'N/a',
             'role' => '2',
             'status' => '1',
-            'password' => bcrypt('GLM123glm!!!$')
+            'password' => bcrypt('admin123')
         ]);
     }
 }

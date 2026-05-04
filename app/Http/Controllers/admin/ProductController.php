@@ -83,7 +83,7 @@ class ProductController extends Controller
             //Save Gallery Pics
             if(!empty($imageArray)) {
                 foreach($imageArray as $temp_image_id) {
-                    
+
 
                     $tempImageInfo = TempImage::find($temp_image_id);
                     $extArray = explode('.',$tempImageInfo->name);

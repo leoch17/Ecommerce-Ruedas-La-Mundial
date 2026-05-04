@@ -96,7 +96,7 @@ with font-awesome or any other icon font library -->
 
                 {{-- SECCIÓN 4X4 --}}
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-list-ul"></i>
                         <p>
@@ -130,7 +130,7 @@ with font-awesome or any other icon font library -->
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
             </ul>
         </nav>
